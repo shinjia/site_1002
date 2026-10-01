@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#315cec">
+  <meta name="description" content="輕鬆點：大按鈕、清楚文字與簡單操作的日常工具，提供筆記、待辦與專注計時。">
+  <title>輕鬆點｜大按鈕日常工具</title>
+  <style>
+    :root{--bg:#f7f8fc;--surface:#fff;--ink:#202b42;--muted:#626e84;--line:#e5e9f2;--blue:#315cec;--soft:#edf2ff;--shadow:0 6px 22px #243b6507;color-scheme:light;font-size:16px}
+    *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI","Noto Sans TC",sans-serif;line-height:1.65}button,input,textarea{font:inherit}button{cursor:pointer}button:disabled{opacity:.5;cursor:default}button,a,input,textarea{ -webkit-tap-highlight-color:transparent}button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible{outline:3px solid var(--blue);outline-offset:5px}svg{width:26px;height:26px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0}button{color:inherit}a{color:var(--blue)}.skip{position:fixed;top:-100px;left:16px;background:var(--surface);padding:12px;z-index:20}.skip:focus{top:12px}
+    .topbar{border-bottom:1px solid var(--line);background:var(--surface)}.top-inner{max-width:1160px;margin:auto;padding:22px 32px;display:flex;align-items:center;justify-content:space-between;gap:16px}.brand{display:flex;align-items:center;gap:13px}.brand-mark{width:44px;height:44px;border-radius:14px;background:var(--blue);color:white;display:grid;place-items:center}.brand strong{font-size:1.35rem;letter-spacing:.03em}.brand small{display:block;font-size:.68rem;color:var(--muted);letter-spacing:.15em;line-height:1.1}.top-right{display:flex;align-items:center;gap:17px}.date{color:var(--muted);font-size:.88rem}.icon-button{display:grid;place-items:center;border:1px solid var(--line);border-radius:14px;min-width:48px;min-height:48px;background:var(--surface)}
+    main{max-width:1160px;margin:auto;padding:54px 32px 30px}.intro{display:flex;align-items:center;justify-content:space-between;gap:35px;margin-bottom:36px}.eyebrow{display:flex;align-items:center;gap:8px;color:var(--blue);font-size:.85rem;font-weight:700;letter-spacing:.05em}.dot{height:7px;width:7px;background:var(--blue);border-radius:50%}h1{font-size:clamp(2rem,4vw,3.1rem);line-height:1.4;letter-spacing:-.04em;margin:12px 0 13px}h1 span{color:var(--blue)}.intro p{margin:0;color:var(--muted);font-size:1rem}.welcome-art{width:175px;height:150px;position:relative;margin-right:32px;flex-shrink:0}.art-back{position:absolute;inset:14px 2px 4px 15px;border-radius:36px;background:#e8edff;transform:rotate(-10deg)}.art-card{position:absolute;inset:0 13px 18px 0;border:1px solid #d7e0ff;background:var(--surface);border-radius:28px;box-shadow:0 14px 26px #315cec10;display:grid;place-items:center;transform:rotate(5deg)}.art-card svg{width:66px;height:66px;color:var(--blue);stroke-width:1.5}.spark{position:absolute;right:0;bottom:0;background:var(--blue);border:6px solid var(--bg);color:white;width:60px;height:60px;border-radius:50%;display:grid;place-items:center}.spark svg{width:22px;height:22px}
+    .section-heading{display:flex;justify-content:space-between;gap:12px;align-items:center;margin-bottom:17px}.section-heading h2{font-size:1.05rem;margin:0}.section-heading span{font-size:.8rem;color:var(--muted)}.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}.tile{position:relative;border:1px solid var(--line);border-radius:22px;background:var(--surface);text-align:left;padding:26px 28px 25px;min-height:207px;box-shadow:var(--shadow);transition:transform .18s,border-color .18s,box-shadow .18s}.tile:hover{transform:translateY(-4px);border-color:#a9bbfa;box-shadow:0 12px 28px #243b6510}.tile:active{transform:translateY(0)}.tile .badge{display:flex;align-items:center;justify-content:center;width:54px;height:54px;border-radius:16px;background:var(--soft);color:var(--blue);margin-bottom:17px}.tile .badge svg{width:27px;height:27px}.tile h3{font-size:1.35rem;margin:0 0 4px;font-weight:750}.tile p{font-size:.87rem;color:var(--muted);margin:0}.tile .arrow{position:absolute;top:32px;right:26px;color:#8793aa;width:21px;height:21px}.tile.primary{background:var(--blue);border-color:var(--blue);color:#fff}.tile.primary .badge{background:#ffffff25;color:#fff}.tile.primary p{color:#e5ebff}.tile.primary .arrow{color:#fff}.tile.green .badge{background:#eaf6f0;color:#277d60}.tile.orange .badge{background:#fff1e5;color:#a66325}.tile.purple .badge{background:#f0ecfc;color:#7552bb}.tile.gray .badge{background:#eef1f6;color:#52627e}
+    .bottom-panel{display:flex;align-items:center;justify-content:space-between;gap:22px;border:1px solid var(--line);border-radius:18px;background:var(--surface);padding:22px 25px;margin-top:28px}.tip{display:flex;align-items:center;gap:15px}.tip>svg{color:var(--blue);width:23px}.tip strong{display:block;font-size:.9rem}.tip p{margin:2px 0 0;color:var(--muted);font-size:.8rem}.text-button{border:0;background:transparent;display:flex;align-items:center;gap:9px;color:var(--blue);font-size:.87rem;min-height:48px;padding:8px 10px;flex-shrink:0}.text-button svg{width:18px}.footer{display:flex;justify-content:space-between;gap:16px;margin-top:27px;color:var(--muted);font-size:.75rem}.footer span:last-child{display:flex;align-items:center;gap:7px}.footer svg{width:15px;height:15px}
+    dialog{width:min(560px,calc(100% - 32px));max-height:90dvh;border:1px solid var(--line);border-radius:24px;padding:28px;background:var(--surface);color:var(--ink);box-shadow:0 24px 90px #0e183333}dialog::backdrop{background:#14233f80;backdrop-filter:blur(4px)}.dialog-heading{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:12px}.dialog-heading h2{font-size:1.5rem;margin:0}.dialog-heading button{border:0;background:var(--bg);border-radius:12px;min-width:48px;min-height:48px;display:grid;place-items:center}.dialog-intro{font-size:.9rem;color:var(--muted);margin:0 0 20px}label{display:block;font-size:.9rem;font-weight:650;margin-bottom:8px}textarea,input[type=text]{width:100%;padding:14px 16px;border:1px solid var(--line);border-radius:14px;color:var(--ink);background:var(--bg)}textarea{min-height:230px;resize:vertical} .actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:18px}.action{border:1px solid var(--line);border-radius:14px;background:var(--bg);padding:12px 22px;min-height:52px;font-weight:650}.action.blue{background:var(--blue);border-color:var(--blue);color:#fff}.save-state{color:var(--muted);font-size:.8rem;margin-top:8px;min-height:1.65em}.todo-form{display:flex;gap:10px}.todo-form .action{flex-shrink:0}.todo-list{list-style:none;padding:0;margin:20px 0 0}.todo-list li{display:flex;align-items:center;gap:12px;border-bottom:1px solid var(--line);padding:10px 0}.todo-label{display:flex;align-items:center;gap:12px;margin:0;flex:1;overflow-wrap:anywhere;font-weight:400;min-height:48px}.todo-label input{accent-color:var(--blue);width:24px;height:24px;flex-shrink:0}.todo-label.done span{text-decoration:line-through;color:var(--muted)}.remove{border:0;background:var(--bg);border-radius:12px;min-width:48px;min-height:48px;display:grid;place-items:center}.remove svg{width:20px}.empty{padding:20px 0;color:var(--muted);text-align:center}.timer{font-size:4rem;font-variant-numeric:tabular-nums;line-height:1.3;font-weight:700;letter-spacing:.02em;text-align:center;padding:22px 0;color:var(--blue)}.timer-state{text-align:center;color:var(--muted);margin:0 0 12px}.presets{display:flex;justify-content:center;gap:10px;flex-wrap:wrap}.presets button[aria-pressed=true]{border-color:var(--blue);background:var(--soft);color:var(--blue)}.center{justify-content:center}.help-list{padding-left:24px}.help-list li{margin-bottom:14px}.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:var(--ink);color:var(--surface);padding:13px 22px;border-radius:14px;box-shadow:var(--shadow);z-index:20;max-width:calc(100% - 32px);text-align:center;font-size:.9rem}.toast:empty{display:none}
+    body.dark{--bg:#151b28;--surface:#202938;--ink:#f2f5fc;--muted:#b1bdd1;--line:#354155;--blue:#91acff;--soft:#2d3b5d;--shadow:none;color-scheme:dark}.dark .brand-mark,.dark .tile.primary,.dark .spark,.dark .action.blue{background:#3c64e7;color:#fff}.dark .art-back{background:#2d3b5d}.dark .art-card{border-color:#405174}.dark .tile.green .badge{background:#243e36;color:#8fdfba}.dark .tile.orange .badge{background:#423326;color:#efbc88}.dark .tile.purple .badge{background:#352d4a;color:#c4a8f5}.dark .tile.gray .badge{background:#303b50;color:#bac9e4}.dark .tile.primary .badge{background:#ffffff25;color:#fff}.dark .tile.primary p{color:#e5ebff}
+    @media(max-width:800px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.welcome-art{width:140px;height:130px;margin-right:0}.top-inner{padding:18px 24px}main{padding:35px 24px 25px}.intro{gap:20px}.tile{min-height:200px;padding:24px}.section-heading span{display:none}}
+    @media(max-width:520px){.top-inner{padding:16px 20px}.date{display:none}.brand strong{font-size:1.2rem}main{padding:30px 20px 22px}.welcome-art{display:none}.intro{margin-bottom:28px}h1{font-size:2.15rem}.intro p{font-size:.9rem}.grid{grid-template-columns:1fr;gap:14px}.tile{min-height:128px;padding:24px 52px 24px 98px;display:flex;flex-direction:column;justify-content:center}.tile .badge{position:absolute;left:24px;top:50%;transform:translateY(-50%);margin:0}.tile h3{font-size:1.2rem}.tile .arrow{right:20px;top:50%;transform:translateY(-50%)}.bottom-panel{align-items:flex-start;flex-direction:column;padding:20px;gap:4px}.footer{flex-direction:column;gap:6px}dialog{padding:22px}.timer{font-size:3.4rem}.todo-form{flex-direction:column}}
+    @media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+  </style>
+</head>
+<body>
+  <a class="skip" href="#main">跳到主要內容</a>
+  <svg aria-hidden="true" style="position:absolute;width:0;height:0;overflow:hidden"><defs>
+    <symbol id="i-tap" viewBox="0 0 24 24"><path d="M9 12V5a2 2 0 0 1 4 0v6l1-1a2 2 0 0 1 3 1l1-1a2 2 0 0 1 3 2v5c0 3-2 5-5 5h-3c-2 0-3-1-4-3l-4-5a2 2 0 0 1 3-2l2 2"/><path d="M4 4 2 3M5 8H2M7 2V1"/></symbol>
+    <symbol id="i-note" viewBox="0 0 24 24"><path d="M13 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-8M15 5l4-4 4 4-4 4-4-4Z"/><path d="m15 5-6 6-1 5 5-1 6-6M7 20h9"/></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="13" r="8"/><path d="M12 9v5l3 2M9 2h6M12 2v3M19 5l2 2"/></symbol>
+    <symbol id="i-list" viewBox="0 0 24 24"><path d="m3 6 2 2 3-4M11 6h10M3 13l2 2 3-4M11 13h10M3 20l2 2 3-4M11 20h10"/></symbol>
+    <symbol id="i-type" viewBox="0 0 24 24"><path d="m2 19 6-14 6 14M4 15h8M18 8v11M15 11h6M16 4h4"/></symbol>
+    <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M5 5l1.5 1.5M17.5 17.5 19 19M19 5l-1.5 1.5M6.5 17.5 5 19"/></symbol>
+    <symbol id="i-help" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9 9a3 3 0 0 1 6 0c0 2-3 2-3 4M12 17h.01"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14m-5-5 5 5-5 5"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"/></symbol>
+    <symbol id="i-lock" viewBox="0 0 24 24"><rect x="5" y="10" width="14" height="11" rx="2"/><path d="M8 10V6a4 4 0 0 1 8 0v4M12 14v3"/></symbol>
+    <symbol id="i-trash" viewBox="0 0 24 24"><path d="M3 6h18M9 6V3h6v3M5 6l1 15h12l1-15M10 10v7M14 10v7"/></symbol>
+  </defs></svg>
+  <header class="topbar"><div class="top-inner">
+    <div class="brand"><span class="brand-mark"><svg aria-hidden="true"><use href="#i-tap"/></svg></span><div><strong>輕鬆點</strong><small>EASY TAP</small></div></div>
+    <div class="top-right"><time class="date" id="date"></time><button class="icon-button" data-open="help" aria-label="開啟使用說明"><svg aria-hidden="true"><use href="#i-help"/></svg></button></div>
+  </div></header>
+  <main id="main">
+    <section class="intro" aria-labelledby="headline"><div><div class="eyebrow"><span class="dot"></span>簡單操作，從這裡開始</div><h1 id="headline">想做什麼，<br><span>輕鬆點一下。</span></h1><p>按鈕大一點，使用輕鬆一點。選擇你現在想做的事。</p></div><div class="welcome-art" aria-hidden="true"><div class="art-back"></div><div class="art-card"><svg><use href="#i-tap"/></svg></div><div class="spark"><svg><use href="#i-check"/></svg></div></div></section>
+    <section aria-labelledby="tools-title"><div class="section-heading"><h2 id="tools-title">你的日常工具</h2><span>6 個功能 · 點一下就能開始</span></div>
+      <div class="grid">
+        <button class="tile primary" data-open="notes"><span class="badge"><svg aria-hidden="true"><use href="#i-note"/></svg></span><h3>寫一則筆記</h3><p>記下想法，留住重要的事</p><svg class="arrow" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+        <button class="tile orange" data-open="focus"><span class="badge"><svg aria-hidden="true"><use href="#i-clock"/></svg></span><h3>專注一下</h3><p id="focus-description">留一段時間，做好一件事</p><svg class="arrow" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+        <button class="tile green" data-open="todos"><span class="badge"><svg aria-hidden="true"><use href="#i-list"/></svg></span><h3>我的待辦</h3><p id="todo-description">把事情列出來，逐一完成</p><svg class="arrow" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+        <button class="tile purple" id="font-button" aria-pressed="false"><span class="badge"><svg aria-hidden="true"><use href="#i-type"/></svg></span><h3 id="font-title">文字放大</h3><p id="font-description">換成大字，看得更清楚</p><svg class="arrow" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+        <button class="tile" id="theme-button" aria-pressed="false"><span class="badge"><svg aria-hidden="true"><use href="#i-sun"/></svg></span><h3>切換外觀</h3><p id="theme-description">淺色與深色，選你喜歡的</p><svg class="arrow" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+        <button class="tile gray" data-open="help"><span class="badge"><svg aria-hidden="true"><use href="#i-help"/></svg></span><h3>使用說明</h3><p>第一次使用？從這裡了解</p><svg class="arrow" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+      </div>
+    </section>
+    <aside class="bottom-panel"><div class="tip"><svg aria-hidden="true"><use href="#i-tap"/></svg><div><strong>用你習慣的方式操作</strong><p>滑鼠點擊、手指觸控，或按 Tab 選擇，再按 Enter 開啟。</p></div></div><button class="text-button" data-open="help">看看怎麼用<svg aria-hidden="true"><use href="#i-arrow"/></svg></button></aside>
+    <footer class="footer"><span>輕鬆點 EASY TAP · 讓每一次操作，都簡單一點。</span><span><svg aria-hidden="true"><use href="#i-lock"/></svg>筆記與待辦僅存於此瀏覽器</span></footer>
+  </main>
+  <dialog id="notes" aria-labelledby="notes-title"><div class="dialog-heading"><h2 id="notes-title">寫一則筆記</h2><button data-close aria-label="關閉筆記"><svg aria-hidden="true"><use href="#i-close"/></svg></button></div><p class="dialog-intro">記下你的想法，輸入時會自動儲存。</p><label for="note">我的筆記</label><textarea id="note" placeholder="今天想記下什麼？"></textarea><div id="note-state" class="save-state" role="status"></div><div class="actions"><button class="action blue" id="download-note">下載筆記</button><button class="action" data-close>完成</button></div></dialog>
+  <dialog id="todos" aria-labelledby="todos-title"><div class="dialog-heading"><h2 id="todos-title">我的待辦</h2><button data-close aria-label="關閉待辦"><svg aria-hidden="true"><use href="#i-close"/></svg></button></div><p class="dialog-intro">一次完成一件事。勾選方框，把完成的事打勾。</p><form id="todo-form"><label for="todo-input">新增一件事</label><div class="todo-form"><input type="text" id="todo-input" placeholder="例如：準備明天的課程" maxlength="180" required><button class="action blue" type="submit">加入待辦</button></div></form><ul class="todo-list" id="todo-list"></ul><div id="todo-state" class="save-state" role="status"></div></dialog>
+  <dialog id="focus" aria-labelledby="focus-title"><div class="dialog-heading"><h2 id="focus-title">專注一下</h2><button data-close aria-label="關閉計時器，計時會繼續"><svg aria-hidden="true"><use href="#i-close"/></svg></button></div><p class="dialog-intro">選擇時間，給自己一段不被打擾的空間。請保持網頁開啟。</p><div class="presets" aria-label="選擇專注時間"><button class="action" data-minutes="5" aria-pressed="false">5 分鐘</button><button class="action" data-minutes="15" aria-pressed="false">15 分鐘</button><button class="action" data-minutes="25" aria-pressed="true">25 分鐘</button></div><div class="timer" id="timer" role="timer" aria-label="剩餘時間">25:00</div><p class="timer-state" id="timer-state" role="status">準備好就開始吧</p><div class="actions center"><button class="action blue" id="timer-toggle">開始專注</button><button class="action" id="timer-reset">重新計時</button></div></dialog>
+  <dialog id="help" aria-labelledby="help-title"><div class="dialog-heading"><h2 id="help-title">使用說明</h2><button data-close aria-label="關閉使用說明"><svg aria-hidden="true"><use href="#i-close"/></svg></button></div><p class="dialog-intro">不需要登入，點選首頁的大按鈕就能使用。</p><ul class="help-list"><li><strong>筆記與待辦：</strong>自動儲存在目前的瀏覽器。可下載筆記留存；清除瀏覽器資料後，儲存內容也會移除。</li><li><strong>專注計時：</strong>可開始、暫停或重新計時。關閉小視窗仍會繼續，重新整理或關閉網頁會重設計時。</li><li><strong>舒適閱讀：</strong>文字可放大，外觀可切換深色。設定會保留在此瀏覽器。</li><li><strong>鍵盤操作：</strong>按 Tab 選擇按鈕，再按 Enter 或空白鍵操作；按 Esc 關閉視窗。</li></ul><div class="actions"><button class="action blue" data-close>知道了，開始使用</button></div></dialog>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script>
+    'use strict';
+    const $ = id => document.getElementById(id);
+    let toastTimeout;
+    function notify(message) { $('toast').textContent = message; clearTimeout(toastTimeout); toastTimeout = setTimeout(() => $('toast').textContent = '', 3500); }
+    function read(key, fallback) { try { return JSON.parse(localStorage.getItem('easytap-' + key)) ?? fallback; } catch { return fallback; } }
+    function save(key, value) { try { localStorage.setItem('easytap-' + key, JSON.stringify(value)); return true; } catch { notify('此瀏覽器無法儲存資料，請下載筆記留存。'); return false; } }
+    $('date').textContent = new Intl.DateTimeFormat('zh-TW', {month:'long',day:'numeric',weekday:'long'}).format(new Date());
+    $('date').dateTime = new Date().toISOString();
+    let large = read('large', false) === true, dark = read('dark', false) === true;
+    function applySettings() {
+      document.documentElement.style.fontSize = large ? '20px' : '16px';
+      document.body.classList.toggle('dark', dark);
+      $('font-button').setAttribute('aria-pressed', String(large));
+      $('font-title').textContent = large ? '恢復文字大小' : '文字放大';
+      $('font-description').textContent = large ? '目前為大字，點一下恢復' : '換成大字，看得更清楚';
+      $('theme-button').setAttribute('aria-pressed', String(dark));
+      $('theme-description').textContent = dark ? '目前為深色，點一下換淺色' : '目前為淺色，點一下換深色';
+      document.querySelector('meta[name="theme-color"]').content = dark ? '#151b28' : '#315cec';
+    }
+    applySettings();
+    $('font-button').addEventListener('click', () => { large = !large; applySettings(); save('large', large); notify(large ? '已切換為大字模式' : '已恢復文字大小'); });
+    $('theme-button').addEventListener('click', () => { dark = !dark; applySettings(); save('dark', dark); notify(dark ? '已切換為深色外觀' : '已切換為淺色外觀'); });
+    document.querySelectorAll('[data-open]').forEach(button => button.addEventListener('click', () => { $(button.dataset.open).showModal(); }));
+    document.querySelectorAll('[data-close]').forEach(button => button.addEventListener('click', () => button.closest('dialog').close()));
+    const storedNote = read('note', '');
+    $('note').value = typeof storedNote === 'string' ? storedNote : '';
+    $('note-state').textContent = '筆記僅保存在此瀏覽器。';
+    $('note').addEventListener('input', () => { $('note-state').textContent = save('note', $('note').value) ? '已自動儲存' : '無法自動儲存，請下載筆記留存。'; });
+    $('download-note').addEventListener('click', () => {
+      const blob = new Blob(['\uFEFF' + $('note').value], {type:'text/plain;charset=utf-8'});
+      const url = URL.createObjectURL(blob), a = document.createElement('a');
+      a.href = url; a.download = '輕鬆點筆記.txt'; document.body.append(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(url), 1000);
+    });
+    const storedTodos = read('todos', []);
+    let todos = Array.isArray(storedTodos) ? storedTodos.filter(t => t && typeof t.text === 'string').map(t => ({text:t.text,done:t.done === true})) : [];
+    function renderTodos() {
+      $('todo-list').replaceChildren();
+      if (!todos.length) { const empty = document.createElement('li'); empty.className = 'empty'; empty.textContent = '目前沒有待辦，加入第一件事吧。'; $('todo-list').append(empty); }
+      todos.forEach((todo, index) => {
+        const li = document.createElement('li'), label = document.createElement('label'), checkbox = document.createElement('input'), text = document.createElement('span'), remove = document.createElement('button');
+        label.className = 'todo-label' + (todo.done ? ' done' : ''); checkbox.type = 'checkbox'; checkbox.checked = todo.done; text.textContent = todo.text;
+        checkbox.addEventListener('change', () => { todo.done = checkbox.checked; label.classList.toggle('done', todo.done); persistTodos(); updateTodoCount(); });
+        remove.type = 'button'; remove.className = 'remove'; remove.setAttribute('aria-label', '刪除待辦：' + todo.text);
+        remove.innerHTML = '<svg aria-hidden="true"><use href="#i-trash"/></svg>';
+        remove.addEventListener('click', () => { todos.splice(index, 1); persistTodos(); renderTodos(); const next = $('todo-list').querySelectorAll('.remove')[Math.min(index, todos.length - 1)]; (next || $('todo-input')).focus(); });
+        label.append(checkbox, text); li.append(label, remove); $('todo-list').append(li);
+      }); updateTodoCount();
+    }
+    function persistTodos() { $('todo-state').textContent = save('todos', todos) ? '已自動儲存' : '無法自動儲存，重新整理後內容可能消失。'; }
+    function updateTodoCount() { const remaining = todos.filter(t => !t.done).length; $('todo-description').textContent = todos.length ? (remaining ? '還有 ' + remaining + ' 件事，慢慢完成' : '全部完成了，做得很好！') : '把事情列出來，逐一完成'; }
+    $('todo-form').addEventListener('submit', event => { event.preventDefault(); const text = $('todo-input').value.trim(); if (!text) { $('todo-input').focus(); return; } todos.push({text,done:false}); persistTodos(); renderTodos(); $('todo-input').value = ''; $('todo-input').focus(); }); renderTodos();
+    let duration = 25 * 60, remaining = duration, deadline = null, interval = null;
+    function format(seconds) { return String(Math.floor(seconds / 60)).padStart(2,'0') + ':' + String(seconds % 60).padStart(2,'0'); }
+    function drawTimer() { $('timer').textContent = format(remaining); $('timer-toggle').textContent = deadline !== null ? '暫停計時' : remaining === 0 ? '再次開始' : remaining === duration ? '開始專注' : '繼續專注'; $('focus-description').textContent = deadline !== null ? '專注中 · 剩餘 ' + format(remaining) : remaining === 0 ? '已完成一段專注時間' : remaining < duration ? '已暫停 · 剩餘 ' + format(remaining) : '留一段時間，做好一件事'; }
+    function stopTimer() { clearInterval(interval); interval = null; deadline = null; }
+    function tick() { if (deadline === null) return; remaining = Math.max(0, Math.ceil((deadline - Date.now()) / 1000)); if (remaining === 0) { stopTimer(); $('timer-state').textContent = '時間到了，休息一下吧！'; notify('專注時間結束，休息一下吧！'); } drawTimer(); }
+    $('timer-toggle').addEventListener('click', () => { if (deadline !== null) { tick(); if (deadline !== null) { stopTimer(); $('timer-state').textContent = '已暫停，準備好再繼續'; } } else { if (remaining === 0) remaining = duration; deadline = Date.now() + remaining * 1000; interval = setInterval(tick, 250); $('timer-state').textContent = '專注中，你可以慢慢來'; } drawTimer(); });
+    function resetTimer() { stopTimer(); remaining = duration; $('timer-state').textContent = '準備好就開始吧'; drawTimer(); }
+    $('timer-reset').addEventListener('click', resetTimer);
+    document.querySelectorAll('[data-minutes]').forEach(button => button.addEventListener('click', () => { duration = Number(button.dataset.minutes) * 60; document.querySelectorAll('[data-minutes]').forEach(b => b.setAttribute('aria-pressed', String(b === button))); resetTimer(); }));
+    document.addEventListener('visibilitychange', () => { if (!document.hidden) tick(); });
+  </script>
+</body>
+</html>
